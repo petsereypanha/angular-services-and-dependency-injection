@@ -72,7 +72,8 @@
               "buildTarget": "services_and_dependency_injection:build:production"
             },
             "development": {
-              "buildTarget": "services_and_dependency_injection:build:development"
+              "buildTarget": "services_and_dependency_injection:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
