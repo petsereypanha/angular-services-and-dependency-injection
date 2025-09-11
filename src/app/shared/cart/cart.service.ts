@@ -1,22 +1,21 @@
-import {computed, Injectable, InjectionToken, signal} from '@angular/core';
+import {computed, Inject, Injectable, InjectionToken, signal} from '@angular/core';
 import {Product} from '@shared/product.model';
 
-type CartOption = {
+export type CartOptions = {
   persistenceType: string,
   persistenceKey: string
 }
+
+export const CART_OPTIONS_TOKEN = new InjectionToken<CartOptions>("CART_OPTIONS");
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   private cartItems = signal<Product[]>([]);
-  private cartOptions: CartOption = {
-    persistenceType: 'localStorage',
-    persistenceKey: 'cart'
-  }
 
   constructor(
+   @Inject(CART_OPTIONS_TOKEN) private cartOptions: CartOptions
   ) {
     if(this.cartOptions && this.cartOptions.persistenceType === 'local' ){
       const cartString = localStorage.getItem(this.cartOptions.persistenceKey);

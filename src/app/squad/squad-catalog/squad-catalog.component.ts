@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Host, Inject, Self, SkipSelf} from '@angular/core';
 import { Product } from '@shared/product.model';
 import { engineers } from './engineers';
 import {CartService} from '@shared/cart/cart.service';
@@ -16,8 +16,8 @@ export class SquadCatalogComponent {
   squad: Observable<Product[]> = this.engineersService.getProducts();
 
   constructor(
-    private cartService: CartService,
-    @Inject(IProductsServiceToken) private engineersService: IProductsService
+     private cartService: CartService,
+     @Inject(IProductsServiceToken) private engineersService: IProductsService
   ) { }
 
   addToCart(engineer: Product) {
